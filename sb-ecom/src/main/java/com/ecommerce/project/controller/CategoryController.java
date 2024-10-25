@@ -1,7 +1,5 @@
 package com.ecommerce.project.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.project.model.Category;
+import com.ecommerce.project.payload.CategoryResponse;
 import com.ecommerce.project.service.CategoryService;
 
 import jakarta.validation.Valid;
@@ -29,8 +28,8 @@ public class CategoryController {
 	}
 
 	@GetMapping("/public/categories")
-	public ResponseEntity<List<Category>> getAllCategories() {
-		return new ResponseEntity<List<Category>>(categoryService.getAllCategories(), HttpStatus.OK);
+	public ResponseEntity<CategoryResponse> getAllCategories() {
+		return new ResponseEntity<CategoryResponse>(categoryService.getAllCategories(), HttpStatus.OK);
 	}
 
 	@PostMapping("/public/categories")
