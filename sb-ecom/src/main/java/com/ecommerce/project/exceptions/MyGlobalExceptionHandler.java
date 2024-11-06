@@ -10,6 +10,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.ecommerce.project.payload.APIResponse;
+
 @RestControllerAdvice
 public class MyGlobalExceptionHandler {
 	
@@ -23,12 +25,12 @@ public class MyGlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<String> myResourceNotFoundException(ResourceNotFoundException e){
-		return new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
+	public ResponseEntity<APIResponse> myResourceNotFoundException(ResourceNotFoundException e){
+		return new ResponseEntity<>(new APIResponse(e.getMessage(), false), HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(APIException.class)
-	public ResponseEntity<String> myAPIException(APIException e){
-		return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<APIResponse> myAPIException(APIException e){
+		return new ResponseEntity<>(new APIResponse(e.getMessage(), false), HttpStatus.BAD_REQUEST);
 	}
 }
